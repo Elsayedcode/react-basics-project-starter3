@@ -4,7 +4,7 @@ import RecipeList from './pages/RecipeList.jsx';
 import RecipeListPage from './pages/RecipeListPage.jsx';
 
 function App() {
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [selectedRecipe, setSelectedRecipe] = useState('');
 
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
