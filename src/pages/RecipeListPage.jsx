@@ -1,8 +1,34 @@
-import { Heading, Image, Box } from "@chakra-ui/react";
+// eslint-disable-next-line no-unused-vars
+import React from "react";
+import { useState } from "react";
+import { Heading, Image, Box, Input, Center } from "@chakra-ui/react";
 import { data } from "../utils/data";
 
-export const RecipeListPage = () => {
-  const recipes = data.hits.map((hit) => {
+
+
+
+const RecipeListPage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredRecips = data.hits.filter((hit) => {
+    const { recipe } = hit;
+    const { label, healthLabels } = recipe;
+    const normalizedLabel = label.toLowerCase();
+    const normalizedSearchQuery = searchQuery.toLowerCase();
+
+    return (
+      normalizedLabel.includes(normalizedSearchQuery) ||
+      healthLabels.some((label) =>
+        label.toLowerCase().includes(normalizedSearchQuery)
+      )
+    );
+  });
+
+  const recipes = filteredRecips.map((hit) => {
     const { recipe } = hit;
     const {
       label,
@@ -16,23 +42,25 @@ export const RecipeListPage = () => {
 
     return (
       <Box
+        className="card"
         key={label}
-        borderWidth="5px"
+        borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
-        p={5}
-        my={5}
-        w="310px"
-        h="600px"
-        mx="auto"
+        p={4}
+        my={4}
+        w="25%"
+        h="650px"
+        m="10px"
+        ml="60px"
         cursor="pointer"
-        textAlign="center"
-        margin="20px 20px 20px 20px"
         display="inline-block"
-        flexDir="row"
+        textAlign="center"
+        flexDir="column"
+        bgColor="blue.300"
       >
-        <Image src={image} alt={label} h="200px" w="500px" objectFit="cover" />
-        <Heading as="h2" size="lg" marginBottom="10px">
+        <Image src={image} alt={label} h="300px" objectFit="cover" />
+        <Heading as="h2" size="lg" my={2}>
           {label}
         </Heading>
         {dietLabels.length > 0 && (
@@ -51,7 +79,7 @@ export const RecipeListPage = () => {
         <Box>
           <strong>Dish Type:</strong> {dishType.join(", ")}
         </Box>
-        <Box mt={50}>
+        <Box mt={2}>
           {healthLabels.includes("Vegan") && (
             <Box as="span" color="green.500" fontWeight="bold" mr={2}>
               Vegan
@@ -68,11 +96,21 @@ export const RecipeListPage = () => {
   });
 
   return (
-    <div className="page-body">
-      <Heading textAlign="center" mb="150px" mt="50px">
-        Your Recipe App
-      </Heading>
-      <div>{recipes}</div>
+    
+    <div className="body-page">
+      <Heading textAlign="center">Your Recipe App</Heading>
+      <Center>
+        <Input
+          type="text"
+          placeholder="Search recipes..."
+          onChange={handleSearch}
+          mb="5rem"
+        />
+      </Center>
+      {recipes}
+      
     </div>
   );
 };
+
+export default RecipeListPage;

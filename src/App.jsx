@@ -1,23 +1,26 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { useState } from 'react';
-import RecipeList from './pages/RecipeList.jsx';
-import RecipeListPage from './pages/RecipeListPage.jsx';
+import {data} from "./utils/data";
+import {useState} from "react";
+import RecipeListPage from "./pages/RecipeListPage";
+import RecipePage from "./pages/RecipePage";
 
 function App() {
-  const [selectedRecipe, setSelectedRecipe] = useState('');
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const handleRecipeClick = (recipe) => {
+  const handleRecipeSelect = (recipe) => {
     setSelectedRecipe(recipe);
   };
 
   return (
-    <ChakraProvider>
+    <div>
       {selectedRecipe ? (
-        <RecipeListPage recipe={selectedRecipe} onBack={() => setSelectedRecipe(null)} />
+        <RecipePage
+          recipe={data.hits.find((hit) => hit.recipe.label === selectedRecipe).recipe}
+          handleRecipeDeselect={() => setSelectedRecipe(null)}
+        />
       ) : (
-        <RecipeList onRecipeClick={handleRecipeClick} />
+        <RecipeListPage handleRecipeSelect={handleRecipeSelect} />
       )}
-    </ChakraProvider>
+    </div>
   );
 }
 
