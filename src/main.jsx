@@ -4,23 +4,25 @@
 // import { ChakraProvider } from '@chakra-ui/react';
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//     <ChakraProvider>
-//       <App />
-//     </ChakraProvider>
-//   </React.StrictMode>,
+  // <React.StrictMode>
+  //   <ChakraProvider>
+  //     <App />
+  //   </ChakraProvider>
+  // </React.StrictMode>,
 // );
 
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
+
+const rootElement = document.getElementById('root');
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+      <App />
+  </React.StrictMode>,
 );
+
 

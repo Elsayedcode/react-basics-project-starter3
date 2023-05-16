@@ -1,9 +1,9 @@
-import { Heading, Image, Box, List, ListItem, ListIcon, Button } from '@chakra-ui/react';
+import { Heading, Image, Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import {  } from "module";
+import RecipeListPage from "./RecipeListPage";
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import { MdCheckCircle } from 'react-icons/md';
+
 
 
 const RecipePage = ({ recipe }) => {
@@ -39,90 +39,93 @@ const RecipePage = ({ recipe }) => {
   
 
   return (
-    
-    <Box p={6}>
-      <Button onClick={handleBackButtonClick} mb={4}>
-        Back
-      </Button>
-      <Box mb={8}>
-        <Heading as='h2' size='xl' mb={4}>
-          {label}
-        </Heading>
-        <Image src={image} alt={label} h='400px' objectFit='cover' />
-      </Box>
-      <Box mb={8}>
-        <Heading as='h3' size='md' mb={2}>
-          Meal Type:
-        </Heading>
-        <Box>{mealType.join(', ')}</Box>
-      </Box>
-      <Box mb={8}>
-        <Heading as='h3' size='md' mb={2}>
-          Dish Type:
-        </Heading>
-        <Box>{dishType.join(', ')}</Box>
-      </Box>
-      <Box mb={8}>
-        <Heading as='h3' size='md' mb={2}>
-          Total Cooking Time:
-        </Heading>
-        <Box>{totalTime} minutes</Box>
-      </Box>
-      {dietLabels.length > 0 && (
-        <Box mb={8}>
-          <Heading as='h3' size='md' mb={2}>
-            Diet Label:
+    <div>
+      {RecipeListPage}
+      <div >
+        <Button onClick={handleBackButtonClick} mb={4}>
+          Back
+        </Button>
+        <div >
+          <Heading as='h2' size='xl' mb={4}>
+            {label}
           </Heading>
-          <Box>{dietLabels.join(', ')}</Box>
-        </Box>
-      )}
-      <Box mb={8}>
-        <Heading as='h3' size='md' mb={2}>
-          Health Labels:
-        </Heading>
-        <List spacing={2}>
-          {healthLabels.map((label) => (
-            <ListItem key={label}>
-              <ListIcon as={MdCheckCircle} color='green.500' />
-              {label}
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-      {cautions.length > 0 && (
-        <Box mb={8}>
+          <Image src={image} alt={label} h='400px' objectFit='cover' />
+        </div>
+        <div >
           <Heading as='h3' size='md' mb={2}>
-            Cautions:
+            Meal Type:
           </Heading>
-          <Box>{cautions.join(', ')}</Box>
-        </Box>
-      )}
-      <Box mb={8}>
-  <Heading as='h3' size='md' mb={2}>
-    Nutrients:
-  </Heading>
-  <Box>Energy: {nutrients.kcal} kcal</Box>
-  <Box>Protein: {nutrients.protein} g</Box>
-  <Box>Fat: {nutrients.fat} g</Box>
-  <Box>Carbs: {nutrients.carbs} g</Box>
-  <Box>Cholesterol: {nutrients.cholesterol} mg</Box>
-  <Box>Sodium: {nutrients.sodium} mg</Box>
-</Box>
+          <div>{mealType.join(', ')}</div>
+        </div>
+        <div >
+          <Heading as='h3' size='md' mb={2}>
+            Dish Type:
+          </Heading>
+          <div>{dishType.join(', ')}</div>
+        </div>
+        <div >
+          <Heading as='h3' size='md' mb={2}>
+            Total Cooking Time:
+          </Heading>
+          <div>{totalTime} minutes</div>
+        </div>
+        {dietLabels.length > 0 && (
+          <div >
+            <Heading as='h3' size='md' mb={2}>
+              Diet Label:
+            </Heading>
+            <div>{dietLabels.join(', ')}</div>
+          </div>
+        )}
+        <div >
+          <Heading as='h3' size='md' mb={2}>
+            Health Labels:
+          </Heading>
+          <div spacing={2}>
+            {healthLabels.map((label) => (
+              <div key={label}>
+                <div color='green.500' />
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+        {cautions.length > 0 && (
+          <div >
+            <Heading as='h3' size='md' mb={2}>
+              Cautions:
+            </Heading>
+            <div>{cautions.join(', ')}</div>
+          </div>
+        )}
+        <div >
+          <Heading as='h3' size='md' mb={2}>
+            Nutrients:
+          </Heading>
+          <div>Energy: {nutrients.kcal} kcal</div>
+          <div>Protein: {nutrients.protein} g</div>
+          <div>Fat: {nutrients.fat} g</div>
+          <div>Carbs: {nutrients.carbs} g</div>
+          <div>Cholesterol: {nutrients.cholesterol} mg</div>
+          <div>Sodium: {nutrients.sodium} mg</div>
+</div>
 
-      <Box mb={8}>
+      <div >
         <Heading as='h3' size='md' mb={2}>
           Ingredients:
         </Heading>
-        <List spacing={2}>
+        <div spacing={2}>
           {ingredientLines.map((line, index) => (
-            <ListItem key={index}>
-              <ListIcon as={MdCheckCircle} color='green.500' />
+            <div key={index}>
+              <div  color='green.500' />
               {line}
-            </ListItem>
+            </div>
           ))}
-        </List>
-      </Box>
-      </Box>
+        </div>
+      </div>
+      </div>
+      </div>
+      
       
       )};
 

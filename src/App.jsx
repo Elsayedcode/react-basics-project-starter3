@@ -3,11 +3,13 @@ import {useState} from "react";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
 
+
+
 function App() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  const handleRecipeSelect = (recipe) => {
-    setSelectedRecipe(recipe);
+  const handleRecipeSelect = (recipeLabel) => {
+    setSelectedRecipe(recipeLabel);
   };
 
   return (

@@ -1,11 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState } from "react";
-import { Heading, Image, Box, Input, Center } from "@chakra-ui/react";
+import { Center,Heading, Image } from "@chakra-ui/react";
 import { data } from "../utils/data";
-
-
-
+import RecipePage from "./RecipePage";
 
 const RecipeListPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,6 +26,12 @@ const RecipeListPage = () => {
     );
   });
 
+  const handleClick = (recipe) => {
+    console.log(`Clicked recipe: ${recipe.label}`);
+    // Open the RecipePage component with the selected recipe
+  };
+  
+
   const recipes = filteredRecips.map((hit) => {
     const { recipe } = hit;
     const {
@@ -41,74 +45,76 @@ const RecipeListPage = () => {
     } = recipe;
 
     return (
-      <Box
+      <>
+      <div
         className="card"
         key={label}
-        borderWidth="1px"
-        borderRadius="lg"
-        overflow="hidden"
-        p={4}
-        my={4}
-        w="25%"
-        h="650px"
-        m="10px"
-        ml="60px"
-        cursor="pointer"
-        display="inline-block"
-        textAlign="center"
-        flexDir="column"
-        bgColor="blue.300"
+        style={{
+          border: "2px solid black",
+          borderRadius: "0.50rem",
+          overflow: "hidden",
+          padding: "0px",
+          margin: "22px",
+          width: "270px",
+          height: "600px",
+          cursor: "pointer",
+          display: "inline-block",
+          textAlign: "center",
+          flexDirection: "column",
+          backgroundColor: "white",
+        }}
+        onClick={() => handleClick(recipe)}
       >
-        <Image src={image} alt={label} h="300px" objectFit="cover" />
-        <Heading as="h2" size="lg" my={2}>
+        <Image src={image} alt={label} w="100%" h="300px" />
+        <Heading as="h2" size="lg" my={2} color="black">
           {label}
         </Heading>
         {dietLabels.length > 0 && (
-          <Box>
+          <div color="black">
             <strong>Diet:</strong> {dietLabels.join(", ")}
-          </Box>
+          </div>
         )}
         {cautions.length > 0 && (
-          <Box>
+          <div color="black">
             <strong>Cautions:</strong> {cautions.join(", ")}
-          </Box>
+          </div>
         )}
-        <Box>
+        <div color="black">
           <strong>Meal Type:</strong> {mealType.join(", ")}
-        </Box>
-        <Box>
+        </div>
+        <div color="black">
           <strong>Dish Type:</strong> {dishType.join(", ")}
-        </Box>
-        <Box mt={2}>
+        </div>
+        <div>
           {healthLabels.includes("Vegan") && (
-            <Box as="span" color="green.500" fontWeight="bold" mr={2}>
-              Vegan
-            </Box>
+            <div style={{ color: "green", fontWeight: "bold" }}>Vegan</div>
           )}
           {healthLabels.includes("Vegetarian") && (
-            <Box as="span" color="green.500" fontWeight="bold" mr={2}>
+            <div style={{ color: "green", fontWeight: "bold" }}>
               Vegetarian
-            </Box>
+            </div>
           )}
-        </Box>
-      </Box>
+        </div>
+      </div>
+      </>
     );
-  });
-
-  return (
     
-    <div className="body-page">
-      <Heading textAlign="center">Your Recipe App</Heading>
-      <Center>
-        <Input
+  });
+  
+  return (
+    <div className="body-page" style={{ backgroundColor: "blue" }}>
+      <Heading textAlign="center" color="#E2E8F0">
+        Welcome to my Recipe App
+      </Heading>
+      <div >
+        <Center><input 
           type="text"
           placeholder="Search recipes..."
           onChange={handleSearch}
-          mb="5rem"
-        />
-      </Center>
-      {recipes}
-      
+        /></Center>
+      </div>
+      <div>{recipes}</div>
+      {RecipePage}
     </div>
   );
 };

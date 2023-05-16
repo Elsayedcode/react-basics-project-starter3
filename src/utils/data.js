@@ -1,9 +1,10 @@
+
 export const data = JSON.parse(`{
   "from": 1,
   "to": 20,
   "count": 10000,
   "_links": {},
-  "hits": [
+  "hits" : [
     {
       "recipe": {
         "label": "Paleo Chocolate Covered Caramels",
