@@ -1,8 +1,11 @@
-import {data} from "./utils/data";
-import {useState} from "react";
+
+
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { data } from "./utils/data";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
-
 
 
 function App() {
@@ -12,12 +15,16 @@ function App() {
     setSelectedRecipe(recipeLabel);
   };
 
+  const handleRecipeDeselect = () => {
+    setSelectedRecipe(null);
+  };
+
   return (
     <div>
       {selectedRecipe ? (
         <RecipePage
           recipe={data.hits.find((hit) => hit.recipe.label === selectedRecipe).recipe}
-          handleRecipeDeselect={() => setSelectedRecipe(null)}
+          onBackButtonClick={handleRecipeDeselect}
         />
       ) : (
         <RecipeListPage handleRecipeSelect={handleRecipeSelect} />
@@ -27,3 +34,4 @@ function App() {
 }
 
 export default App;
+

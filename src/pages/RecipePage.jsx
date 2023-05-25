@@ -1,18 +1,7 @@
-import { Heading, Image, Button } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
-import RecipeListPage from "./RecipeListPage";
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
+import { Heading, Image, Button,VStack,HStack } from '@chakra-ui/react';
 
 
-
-const RecipePage = ({ recipe }) => {
-  const navigate = useNavigate();
-
-  const handleBackButtonClick = () => {
-    navigate();
-  };
-
+const RecipePage = ({ recipe, onBackButtonClick }) => {
   const {
     label,
     image,
@@ -23,7 +12,6 @@ const RecipePage = ({ recipe }) => {
     healthLabels,
     cautions,
     ingredientLines,
-    // yield: servings,
     totalNutrients,
   } = recipe;
 
@@ -36,98 +24,111 @@ const RecipePage = ({ recipe }) => {
     sodium: Math.round(totalNutrients.NA.quantity),
   };
 
-  
-
   return (
-    <div>
-      {RecipeListPage}
-      <div >
-        <Button onClick={handleBackButtonClick} mb={4}>
-          Back
-        </Button>
-        <div >
-          <Heading as='h2' size='xl' mb={4}>
-            {label}
+    
+    <VStack paddingTop="30px" paddingBottom="30px" backgroundColor="blue" >
+      <div style={{backgroundColor:'white', width: "50%" ,paddingBottom:"40px"}}>
+        <Button onClick={onBackButtonClick} color="blue" backgroundColor= 'white' border="none" mb={4}>
+        Back
+      </Button>
+      <div>
+        <Image src={image} alt={label} h='500px' w='100%' objectFit='cover' />
+        <Heading paddingLeft="30px"  as='h2'  m={0}>
+          {label}
+        </Heading>
+      </div>
+     
+      <HStack>
+        <VStack paddingBottom='20px'>
+      <div>
+        <Heading as='h4'  m={0}>
+          Meal Type:
+        </Heading>
+        <div style={{ fontSize:'15px'}}>{mealType.join(', ')}</div>
+      </div>
+      <div>
+        <Heading as='h4'  m={0}>
+          Dish Type:
+        </Heading>
+        <div style={{ fontSize:'15px' }}>{dishType.join(', ')}</div>
+      </div>
+      <div style={{ paddingLeft:'30px' }}>
+        <Heading as='h4'  m={0}>
+          Total Cooking Time:
+        </Heading>
+        <div style={{ fontSize:'15px' }}>{totalTime} minutes</div>
+      </div>
+      {dietLabels.length > 0 && (
+        <div>
+          <Heading as='h4'  m={0}>
+            Diet Label:
           </Heading>
-          <Image src={image} alt={label} h='400px' objectFit='cover' />
+          <div style={{ fontSize:'15px' }}>{dietLabels.join(', ')}</div>
         </div>
-        <div >
-          <Heading as='h3' size='md' mb={2}>
-            Meal Type:
-          </Heading>
-          <div>{mealType.join(', ')}</div>
-        </div>
-        <div >
-          <Heading as='h3' size='md' mb={2}>
-            Dish Type:
-          </Heading>
-          <div>{dishType.join(', ')}</div>
-        </div>
-        <div >
-          <Heading as='h3' size='md' mb={2}>
-            Total Cooking Time:
-          </Heading>
-          <div>{totalTime} minutes</div>
-        </div>
-        {dietLabels.length > 0 && (
-          <div >
-            <Heading as='h3' size='md' mb={2}>
-              Diet Label:
-            </Heading>
-            <div>{dietLabels.join(', ')}</div>
-          </div>
-        )}
-        <div >
-          <Heading as='h3' size='md' mb={2}>
-            Health Labels:
-          </Heading>
-          <div spacing={2}>
-            {healthLabels.map((label) => (
-              <div key={label}>
-                <div color='green.500' />
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-        {cautions.length > 0 && (
-          <div >
-            <Heading as='h3' size='md' mb={2}>
-              Cautions:
-            </Heading>
-            <div>{cautions.join(', ')}</div>
-          </div>
-        )}
-        <div >
-          <Heading as='h3' size='md' mb={2}>
-            Nutrients:
-          </Heading>
-          <div>Energy: {nutrients.kcal} kcal</div>
-          <div>Protein: {nutrients.protein} g</div>
-          <div>Fat: {nutrients.fat} g</div>
-          <div>Carbs: {nutrients.carbs} g</div>
-          <div>Cholesterol: {nutrients.cholesterol} mg</div>
-          <div>Sodium: {nutrients.sodium} mg</div>
-</div>
+      )}
 
+{cautions.length > 0 && (
+        <div>
+          <Heading as='h4'  mb={0}>
+            Cautions:
+          </Heading>
+          <div style={{ fontSize:'15px' , backgroundColor:" pink" }}>{cautions.join(', ')}</div>
+        </div>
+      )}
+      </VStack  >
+      <HStack >
+  <div style={{ paddingLeft: '100px' }}>
+    <Heading as="h4" mb={2}>
+      Health Labels:
+    </Heading>
+    <div spacing={2}>
+      {healthLabels.map((label) => (
+        <div key={label}>
+          <div style={{ fontSize: '15px', display:'inline-block',color:"blue"}}>{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</HStack>
+
+      </HStack>
+<HStack paddingBottom= "10px"  paddingLeft="20px">
       <div >
-        <Heading as='h3' size='md' mb={2}>
+        <Heading as='h4' m={0}>
           Ingredients:
         </Heading>
-        <div spacing={2}>
+        <div>
           {ingredientLines.map((line, index) => (
             <div key={index}>
-              <div  color='green.500' />
-              {line}
+              <div style={{ fontSize:'15px'}}>{line}</div>
             </div>
           ))}
         </div>
       </div>
-      </div>
+
+      
+        
+      
+      <div  style={{ paddingLeft:"30px" }}>
+        <Heading as='h4'  mb={0}>
+          Nutrients:
+        </Heading>
+        <div style={{ fontSize:'15px' }}>
+        <div>Energy: {nutrients.kcal} kcal</div>
+        <div>Protein: {nutrients.protein} g</div>
+        <div>Fat: {nutrients.fat} g</div>
+        <div>Carbs: {nutrients.carbs} g</div>
+        <div>Cholesterol: {nutrients.cholesterol} mg</div>
+        <div>Sodium: {nutrients.sodium} mg</div>
+        </div>
       </div>
       
-      
-      )};
+      </HStack>
+      </div>
+     </VStack>
+    
+  );
+};
 
 export default RecipePage;
-      
+
