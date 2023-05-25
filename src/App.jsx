@@ -1,12 +1,9 @@
-
-
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { data } from "./utils/data";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
-
 
 function App() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -23,7 +20,9 @@ function App() {
     <div>
       {selectedRecipe ? (
         <RecipePage
-          recipe={data.hits.find((hit) => hit.recipe.label === selectedRecipe).recipe}
+          recipe={
+            data.hits.find((hit) => hit.recipe.label === selectedRecipe).recipe
+          }
           onBackButtonClick={handleRecipeDeselect}
         />
       ) : (
@@ -34,4 +33,3 @@ function App() {
 }
 
 export default App;
-

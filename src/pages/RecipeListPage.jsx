@@ -1,5 +1,3 @@
-
-
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Center, Heading, Image } from "@chakra-ui/react";
@@ -75,7 +73,7 @@ const RecipeListPage = ({ handleRecipeSelect }) => {
                 textAlign: "center",
                 flexDirection: "column",
                 backgroundColor: "white",
-                marginLeft: "35px"
+                marginLeft: "35px",
               }}
               onClick={() => handleRecipeSelect(label)}
             >
@@ -121,6 +119,4 @@ const RecipeListPage = ({ handleRecipeSelect }) => {
 
 export default RecipeListPage;
 
-
 //=====================================
-

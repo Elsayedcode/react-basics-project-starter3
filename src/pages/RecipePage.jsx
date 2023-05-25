@@ -84,7 +84,7 @@ const RecipePage = ({ recipe, onBackButtonClick }) => {
     <div spacing={2}>
       {healthLabels.map((label) => (
         <div key={label}>
-          <div style={{ fontSize: '15px', display:'inline-block',color:"blue"}}>{label}</div>
+          <div style={{ fontSize: '15px',color:"blue"}}>{label}</div>
         </div>
       ))}
     </div>
