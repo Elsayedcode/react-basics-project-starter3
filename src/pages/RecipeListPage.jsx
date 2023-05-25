@@ -2,7 +2,10 @@
 import React, { useState } from "react";
 import { Center, Heading, Image } from "@chakra-ui/react";
 import { data } from "../utils/data";
-// import RecipePage from "./RecipePage";
+
+// This page is the main page with a list of all recipes showing summery of the recipe
+// details, i have also created a search function based on the recipe type like 
+//(vegan or Vegetarian) also i can search recipes based on Label and health Label
 
 const RecipeListPage = ({ handleRecipeSelect }) => {
   const [searchQuery, setSearchQuery] = useState("");

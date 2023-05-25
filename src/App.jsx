@@ -5,6 +5,8 @@ import { data } from "./utils/data";
 import RecipeListPage from "./pages/RecipeListPage";
 import RecipePage from "./pages/RecipePage";
 
+//Here i have used condition and useState to display only the selected page
+
 function App() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 

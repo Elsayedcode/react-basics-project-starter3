@@ -1,5 +1,9 @@
 import { Heading, Image, Button,VStack,HStack } from '@chakra-ui/react';
 
+// In this page i can display the selected recipe from the <RecipeListpage/> 
+// whicht contain all the recipes showing more details of the recipe
+// i made a buttom to guid back to the recipes list, here i have used 2 ways of styling 
+//Chakra-ui and inline styling.
 
 const RecipePage = ({ recipe, onBackButtonClick }) => {
   const {
